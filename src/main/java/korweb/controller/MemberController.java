@@ -18,4 +18,10 @@ public class MemberController {
         return memberServcie.signup(memberDto);
     }
 
+    // 2. 로그인 HTTP 매핑
+    @PostMapping("/member/login.do")
+    public boolean login(@RequestBody MemberDto memberDto) {
+        return memberServcie.login(memberDto);
+    }
+
 }
