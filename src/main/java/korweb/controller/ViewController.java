@@ -31,4 +31,10 @@ public class ViewController {
         return "member/info.html";
     }
 
+    // [5] 수정페이지를 반환해주는 메소드
+    @GetMapping("/member/update")
+    public String myUpdate() {
+        return "member/update.html";
+    }
+
 }

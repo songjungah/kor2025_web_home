@@ -20,14 +20,14 @@
 
     <!-- 오른쪽 구역 -->
     <div class="col-md-10 mx-auto col-lg-5">
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+      <form id="signupForm" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
         <div class="form-floating mb-3">
-          <input type="text" class="form-control midInput" id="floatingInput" placeholder="ID">
+          <input type="text" name="mid" class="form-control midInput" id="floatingInput" placeholder="ID">
           <label for="floatingInput">계정 아이디</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="password" class="form-control mpwdInput" id="floatingPassword" placeholder="Password">
+          <input type="password" name="mpwd" class="form-control mpwdInput" id="floatingPassword" placeholder="Password">
           <label for="floatingPassword">계정 비밀번호</label>
         </div>
         <div class="form-floating mb-3">
@@ -35,12 +35,16 @@
           <label for="floatingPassword">계정 비밀번호 확인</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control mnameInput" id="floatingName" placeholder="name">
+          <input type="text" name="mnmae" class="form-control mnameInput" id="floatingName" placeholder="name">
           <label for="floatingInput">닉네임</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="email" class="form-control memailInput" id="floatingEmail" placeholder="email">
+          <input type="email" name="memail" class="form-control memailInput" id="floatingEmail" placeholder="email">
           <label for="floatingInput">이메일</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="file" name="uploadfile" class="form-control memailInput" id="floatingfile" placeholder="img">
+          <label for="floatingInput">프로필 사진</label>
         </div>
 
 
