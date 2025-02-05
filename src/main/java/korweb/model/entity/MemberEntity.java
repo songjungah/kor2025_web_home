@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "member")     // 테이블명
-public class MemberEntity {
+public class MemberEntity extends BaseTime {
 
     @Id     // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)     // auto_increment

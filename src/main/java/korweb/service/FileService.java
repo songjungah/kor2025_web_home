@@ -1,4 +1,4 @@
-package korweb.model.service;
+package korweb.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,8 +48,9 @@ public class FileService {
             multipartFile.transferTo(file);
         } catch (IOException e) {
             System.out.println("파일업로드 실패 : " + e);  // 만약에 업로드 실행하면 null
+            return null;
         }
-        return uploadFile;  // 만약에 업로드 성공하면 성공한 파일명 반환
+        return fileName;  // 만약에 업로드 성공하면 성공한 파일명 반환
     }
     
     // 2. 다운로드 함수/메소드

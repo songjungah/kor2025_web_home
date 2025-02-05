@@ -1,4 +1,4 @@
-package korweb.model.service;
+package korweb.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -12,15 +12,15 @@ import korweb.model.repository.PointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MemberServcie {
+public class MemberService {
 
     @Autowired private MemberRepository memberRepository;
 
-    @Autowired private FileService fileService;
+    @Autowired private FileService fileService; // 파일 서비스 객체
 
     // 1. 회원가입 서비스
     @Transactional  // 트랜잭션
@@ -165,9 +165,20 @@ public class MemberServcie {
         if (mid != null) {  // 2. 만약에 로그인 상태이면
             // 3. 현재 로그인된 아이디로
             MemberEntity memberEntity = memberRepository.findByMid(mid);
+            
+            // 외래 키로 참조하고 있는 엔티티의 관계를 끊음
+            List<PointEntity> relatedEntities = pointRepository.findByMemberEntity(memberEntity);
+            for (PointEntity relatedEntity : relatedEntities) {
+                relatedEntity.setMemberEntity(null);
+            }
+            
             // 4. 엔티티 탈퇴/삭제하기
             memberRepository.delete(memberEntity);
-            // 5. 반환
+
+            // 5. 로그인 정보 지우기 : 로그아웃
+            deleteSession();
+
+            // 6. 반환
             return true;
         }
         // 비로그인 상태이면
@@ -196,6 +207,36 @@ public class MemberServcie {
         PointEntity saveEntity = pointRepository.save(pointEntity);
         if(pointEntity.getPno() > 0) {return true;}
         else {return false;}
+    }
+
+    // [10] 내 포인트 지급 전체 내역 조회
+    public List<PointDto> pointList(){
+        // 1. (로그인된) 내정보 가져오기
+        String mid = getSession();
+        MemberEntity memberEntity = memberRepository.findByMid( mid );
+        // 2. 내 포인트 조회하기
+        List<PointEntity> pointEntityList = pointRepository.findByMemberEntity( memberEntity );
+        // 3. 조회된 포인트 엔티티를 dto로 변환
+        List<PointDto> pointDtoList = new ArrayList<>();
+        pointEntityList.forEach( (entity) ->{
+            pointDtoList.add( entity.toDto() );
+        });
+        return  pointDtoList;
+    }
+    
+    // [11] 현재 내 포인트 조회
+    public int pointInfo(){
+        // 1. (로그인된) 내정보 가져오기
+        String mid = getSession();
+        MemberEntity memberEntity = memberRepository.findByMid( mid );
+        // 2. 내 포인트 조회하기
+        List<PointEntity> pointEntityList = pointRepository.findByMemberEntity( memberEntity );
+        // 3. 조회된 포인트 엔티티의 합계 구하기.
+        int myPoint = 0;
+        for( int index = 0 ; index<=pointEntityList.size()-1 ; index++ ){
+            myPoint += pointEntityList.get(index).getPcount();
+        }
+        return  myPoint;
     }
 
 }

@@ -54,10 +54,11 @@ const onSignUp = ()=>{
 */
 
 
+/*
 // [2] (업로드 후) 회원가입 함수
 const onSignUp = ( ) => {
     
-    // 입력된 값을 하나씩 가져온느 방식이 아닌 form 전체를 한번에 가져오기(multipart/form-data)
+    // 입력된 값을 하나씩 가져오는 방식이 아닌 form 전체를 한번에 가져오기(multipart/form-data)
     // [1] 전송할 form dom 객체를 가져온다.
     const signupForm = document.querySelector('#signupForm');
     console.log(signupForm);    // 폼 전체를 가져왔는지 확인 작업
@@ -93,3 +94,35 @@ const onSignUp = ( ) => {
         .catch(error => {alert('가입오류 : 관리자에게 문의');}) // 통신오류가 발생하면 오류 메세지 안내 
 
 }
+        */
+
+
+// [2] (업로드 ) 회원가입 함수
+const onSignUp = ( ) => {
+    // - 입력된 값을 하나씩 가져오는 방식이 아닌 form 전체를 한번에 가져오기 ( multipart/form-data )
+    // [1] 전송할 form dom 객체 가져온다.
+    const signupForm = document.querySelector('#signupForm');
+    console.log( signupForm ); // 폼 전체를 가져왔는지 확인 작업
+    // * 폼 전체를 전송할때는 controller 에 dto 멤버변수 와 form 안에 있는 input 의 name 속성명이 동일하다.
+    // <input name="mid">   <---- 동일 ----> MemberDto{ private String mid; }
+
+    // [2] form dom 객체를 바이트로 변환한다. new FormData( formDom객체 ) : 지정한 dom객체를 바이트로 변환
+        // - HTTP 대용량(첨부파일) 자료들은 바이너리(바이트) 단위로 전송하므로 JSON으로 전송이 불가능.
+    const signupFormData = new FormData( signupForm );
+    console.log( signupFormData ); // 'application/json' 형식이 아닌 'multipart/form-data' 형식으로 전송하기 위해서
+    // [3] application/json 이 아닌 multipart/form-data 형식의 fetch 설정하는 방법
+    const option = {
+        method : 'POST' ,
+        // content-type 생략하면 자동으로 multipart/form-data 설정된다.
+        body : signupFormData
+        // JSON.stringify() 안하는 이유 : 폼 전송 해야 하므로 생략한다.
+    }
+    // [4] fetch 사용한다.
+    fetch( '/member/signup.do' , option )
+        .then( response => response.json() )
+        .then( data => {
+            if( data == true ){ alert('가입등록 완료'); location.href="/member/login"; }
+            else{  alert('가입실패 : 입력하신 정보가 올바르지 않습니다.') }
+        })
+        .catch( error => { alert('가입오류 : 관리자에게 문의'); } )
+}// f end
