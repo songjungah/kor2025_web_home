@@ -42,19 +42,19 @@ public class MemberController {
     public boolean logout() {
         return memberService.deleteSession();
     }
-    
+
     // 5. 내 정보 조회
     @GetMapping("/member/myinfo.do")
     public MemberDto myInfo() {
         return memberService.getMyInfo();
     }
-    
+
     // 6. 회원탈퇴
     @DeleteMapping("/member/delete.do")
     public boolean myDelete() {
         return memberService.myDelete();
     }
-    
+
     // 7. 회원정보 수정
     @PutMapping("/member/update.do")
     public boolean myUpdate(@RequestBody MemberDto memberDto) {
