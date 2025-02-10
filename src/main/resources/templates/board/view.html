@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <Link href="/css/board/index.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 헤더 html 플러그인  -->
+    <div th:replace="~{ /header.html :: header }"> </div>
+
+    <div class="container">
+
+        <div class="infobox">
+            <span class="mimgbox">작성자 프로필 들어가는 곳</span>
+            <span class="midbox">작성자 아이디</span>
+            <span class="biewbox">조회수</span>
+            <span class="cdatebox">작성일</span>
+        </div>
+
+        <div class="btitle">게시물 제목</div>
+        <div class="bcontent">게시물 내용</div>
+        
+        <div>
+            <textarea></textarea>
+            <button onclick="onReplyWrite()" type="button">댓글 개시</button>
+        </div>
+
+    </div>
+
+    <script src="/js/board/view.js"></script>
+
+</body>
+</html>
