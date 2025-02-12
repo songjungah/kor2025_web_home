@@ -168,7 +168,7 @@ public class BoardService {
         // 5. 생성한 entity 를 저장한다.
         ReplyEntity saveEntity =  replyRepository.save(replyEntity);
         if (saveEntity.getRno() > 0) {
-            return true;    // 댓글 번호 생서오디었다면 등록 성공
+            return true;    // 댓글 번호 생성되었다면 등록 성공
         }
         return false;
     }
