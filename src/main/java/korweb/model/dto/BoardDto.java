@@ -26,7 +26,7 @@ public class BoardDto {
     // 화면에는 작성자의 회원번호가 아닌 아이디를 출력해야하므로
     private String mid;         // 작성자의 회원아이디
     private String cname;       // 카테고리명
-    
+
     // * 댓글 리스트
     private List<Map<String, String>> replylist;
 
