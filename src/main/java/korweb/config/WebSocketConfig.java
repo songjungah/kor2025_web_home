@@ -21,3 +21,13 @@ public class WebSocketConfig implements WebSocketConfigurer {
         registry.addHandler(  chatServerSocket, "/socket/server"); // HTTP 의 매핑 주소와 중복이 불가능.
     } // f end
 } // c end
+
+
+
+
+
+
+
+
+
+

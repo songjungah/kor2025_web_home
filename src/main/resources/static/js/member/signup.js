@@ -60,10 +60,43 @@ const onSignUp = ( ) => {
     }
     // [4] fetch 사용한다.
     fetch( '/member/signup.do' , option )
-        .then( response => response.json())
+        .then( response => response.json() )
         .then( data => {
             if( data == true ){ alert('가입등록 완료'); location.href="/member/login"; }
             else{  alert('가입실패 : 입력하신 정보가 올바르지 않습니다.') }
         })
         .catch( error => { alert('가입오류 : 관리자에게 문의'); } )
 }// f end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

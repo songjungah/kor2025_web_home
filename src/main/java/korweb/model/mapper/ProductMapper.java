@@ -28,9 +28,9 @@ public interface ProductMapper { // [1] 인터페이스타입 선언
     ProductDto find( int id );
     // * mybatis @Select 에서는 #{ 매개변수 }을 추상메소드 매개변수 와 같다.
     // 즉] 추상메소드 매개변수에 변수를 #{ } 이용하여 SQL 문에 대입할수 있다.
-    // console프로젝트 Dao 에서 ps.setInt(1 , id );
+        // console프로젝트 Dao 에서 ps.setInt(1 , id );
     // 조회결과를 자동으로 ProductDto 로 변환 해준다.
-    // console프로젝트 Dao 에서 rs.next(); rs.getInt("id);
+        // console프로젝트 Dao 에서 rs.next(); rs.getInt("id);
 
     // (4) 제품 개별 수정  SQL 매핑
     // Dao 방법 : update products set name = ? , price = ? where id = ?;
@@ -44,3 +44,10 @@ public interface ProductMapper { // [1] 인터페이스타입 선언
     boolean delete( int id );
 
 } // class end
+
+
+
+
+
+
+

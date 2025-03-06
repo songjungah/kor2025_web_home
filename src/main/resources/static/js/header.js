@@ -9,8 +9,7 @@ const getLoginMid = ( ) =>{
     let html = '';
     fetch( '/member/myinfo.do' , option )
         .then( response => response.json() ) // SyntaxError: Unexpected token 'q', "qweqwe" is not valid JSON
-        //.then( response => response.text() ) // String controller 에서 String 타입으로 반환할 경우에는 .text() 함수로 변환해야한다.
-        //                                     // day70 : dto 반환하므로 json()변경
+        //.then( response => response.text() ) // String controller 에서 String 타입으로 반환할 경우에는 .text() 함수로 변환해야한다. // day70 : dto 반환하므로 json()변경
         .then( data => {  console.log(data);
             // - 로그인 상태에 따라 버튼 활성화 여부 다르게 표현
             console.log( '로그인상태');
@@ -70,3 +69,7 @@ const myPointInto =  ( ) =>{
         })
         .catch( e => { console.log(e); })
 }
+
+
+
+

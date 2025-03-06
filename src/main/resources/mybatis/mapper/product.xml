@@ -26,3 +26,11 @@
         delete from products where id = #{ id }
     </delete>
 </mapper>
+
+
+
+
+
+
+
+

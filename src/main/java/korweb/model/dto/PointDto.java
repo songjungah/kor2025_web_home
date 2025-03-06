@@ -1,5 +1,6 @@
 package korweb.model.dto;
 
+
 import korweb.model.entity.PointEntity;
 import lombok.*;
 

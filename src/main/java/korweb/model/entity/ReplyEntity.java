@@ -3,33 +3,27 @@ package korweb.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
-@ToString
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "reply")     // 테이블명
+@Getter @Setter @ToString @Builder // 룸복
+@AllArgsConstructor @NoArgsConstructor // 룸복
+@Entity // 엔티티
+@Table( name = "reply") // 테이블명
 public class ReplyEntity extends BaseTime {
 
-    // 1. 댓글 번호
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int rno;
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private int rno; // 1. 댓글번호
 
-    // 2. 댓글내용
-    @Column(nullable = false, columnDefinition = "varchar(255)")
-    private String rcontent;
+    @Column( nullable = false , columnDefinition = "varchar(255)" )
+    private String rcontent; // 2. 댓글내용
 
-    // 3. 댓글작성자 : 작성자번호 : 단반향
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "mno")
+    // 3. 댓글작성자 : 작성자번호 : 단방향
+    @ManyToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "mno" )
     private MemberEntity memberEntity;
 
-    // 4. 게시물 번호 : 단반향
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bno")
+    // 4. 게시물번호 : 단방향
+    @ManyToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "bno")
     private BoardEntity boardEntity;
 
 }

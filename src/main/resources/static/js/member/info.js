@@ -46,3 +46,4 @@ const getPointInfo = ( ) => {
     }).catch( e => { console.log(e)})
 } // f end
 getPointInfo(); // info.html 이 열릴때 내정보 불러오기 함수 실행
+
